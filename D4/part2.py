@@ -35,6 +35,7 @@ def main():
         cards.append((id, matchNumber(winning, player)))        
     
     gameList = []
+    sum = 0
     
     for i in range(len(cards)-1, -1, -1):
         (id, count) = cards[i]
@@ -43,14 +44,9 @@ def main():
             (id2, count2) = gameList[len(gameList)-1-j]
             nbCard += 1 + count2
         gameList.append((id, nbCard))
+        sum += nbCard + 1
     
-    sum = 0
-    for (id, count) in gameList:
-        sum += 1+count
-        
     print(sum)
-        
-    
         
         
 main()
