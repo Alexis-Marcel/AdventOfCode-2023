@@ -44,32 +44,31 @@ def matchInterval(seedsInterval, map):
             seedBornInf = sourceSeed
             seedBornSup = sourceSeed + rangeSeed
 
-            # Cas où la seed est entièrement hors de l'intervalle de la carte
+            # Cas où la seed est entièrement hors de l'intervalle
             if seedBornSup <= mapBornInf or seedBornInf >= mapBornSup:
                 tempQueue.append((sourceSeed, rangeSeed))
 
-            # Cas où la seed englobe l'intervalle de la carte
-            elif seedBornInf <= mapBornInf and seedBornSup >= mapBornSup:
-                if seedBornInf < mapBornInf:
-                    tempQueue.append((sourceSeed, mapBornInf - sourceSeed))
+            # Cas où la seed englobe l'intervalle
+            elif seedBornInf < mapBornInf and seedBornSup > mapBornSup:
+                tempQueue.append((sourceSeed, mapBornInf - sourceSeed))
                 newSeedsInterval.append((destination, rangeMap))
-                if seedBornSup > mapBornSup:
-                    tempQueue.append((mapBornSup, seedBornSup - mapBornSup))
+                tempQueue.append((mapBornSup, seedBornSup - mapBornSup))
 
-            # Cas où la seed est partiellement dans l'intervalle de la carte
+            # Cas où la seed est partiellement dans l'intervalle
             else:
-                # Cas où le début de la seed est avant la carte
+                # Cas où le début de la seed est avant l'intervalle
                 if seedBornInf < mapBornInf:
                     tempQueue.append((sourceSeed, mapBornInf - sourceSeed))
                     overlap = min(seedBornSup, mapBornSup) - mapBornInf
                     newSeedsInterval.append((destination, overlap))
-                # Cas où le début de la seed est dans la carte
+                # Cas où le début de la seed est dans l'intervalle
                 else:
                     overlap = min(seedBornSup, mapBornSup) - seedBornInf
                     newDestination = destination + seedBornInf - mapBornInf
                     newSeedsInterval.append((newDestination, overlap))
                     if seedBornSup > mapBornSup:
                         tempQueue.append((mapBornSup, seedBornSup - mapBornSup))
+         
 
         queue = tempQueue
 
