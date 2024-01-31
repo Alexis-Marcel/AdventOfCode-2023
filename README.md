@@ -19,7 +19,7 @@ To use these solutions, follow the steps below:
 
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/advent-of-code-2023.git
+   git clone https://github.com/Alexis-Marcel/AdventOfCode-2023.git
    ```
 2. Navigate to the repository directory:
    ```
